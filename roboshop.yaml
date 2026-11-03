@@ -47,7 +47,7 @@
       when: instance_action == "create"
 
     - name: delete r53 records
-      mazon.aws.route53:
+      amazon.aws.route53:
         state: absent
         zone: "{{ domain_name }}"
         record: "{{item}}.{{ domain_name }}"
