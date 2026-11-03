@@ -10,7 +10,7 @@
       - mysql
       - rabbitmq
 
-    action: create
+    instance_action: create
     domain_name: buyany.store
     ami_id: ami-0055977a6e828a4f4
     region: us-east-1
@@ -27,4 +27,9 @@
         region: "{{ region }}"
         state: present
       loop: "{{ instances }}"
-      when: action == "create"
+      when: instance_action == "create"
+      register: ec2_output
+
+    - name: print ec2 creation ec2_output
+      debug: 
+        msg: "{{ ec2_output }}"
